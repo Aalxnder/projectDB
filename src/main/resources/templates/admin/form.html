@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body class="page-top">
+    <div layout:fragment="form">
+
+        <br>
+        <form action="" method="post" th:object="${delito}"
+        enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="nombre" class="form-label">Titulo:</label>
+                    <input th:field="*{nombreDelito}" type="text" id="nombre" class="form-control form-control-user" placeholder="nombre">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nombreDelito')}"
+                         th:errors="*{nombreDelito}"></div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="descripcion" class="form-label">Descripcion:</label>
+                    <input th:field="*{descripcion}" type="text" id="descripcion" class="form-control form-control-user" placeholder="Descripcion">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}"
+                         th:errors="*{descripcion}"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="idAgresor" class="form-label">IdAgresor:</label>
+                    <input th:field="*{idAgresor}" type="number" id="idAgresor" class="form-control form-control-user" placeholder="Id Agresor:">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('idAgresor')}"
+                         th:errors="*{idAgresor}"></div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="evidencia" class="form-label">evidencia:</label>
+                    <input th:field="*{evidencia}" type="text" id="evidencia" class="form-control form-control-user" placeholder="evidencia">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('evidencia')}"
+                         th:errors="*{evidencia}"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="idVictima" class="form-label">IdAgresor:</label>
+                    <input th:field="*{idVictima}" type="number" id="idVictima" class="form-control form-control-user" placeholder="Id Victima:">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('idVictima')}"
+                         th:errors="*{idVictima}"></div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="investigadorId" class="form-label">evidencia:</label>
+                    <input th:field="*{investigadorId}" type="number" id="investigadorId" class="form-control form-control-user" placeholder="investigadorId: ">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('investigadorId')}"
+                         th:errors="*{investigadorId}"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fecha" class="form-label">Fecha de cometido: </label>
+                <input type="date" class="form-control form-control-user"
+                       id="fecha"  placeholder="Digite la fecha de cometido"
+                       th:field="*{fecha}">
+                <div class="invalid-feedback"
+                     th:if="${#fields.hasErrors('fecha')}"
+                     th:errors="*{fecha}"></div>
+            </div>
+            <div class="form-group">
+                <label for="portada" class="form-label">Portada : </label> <input
+                    type="file" name="portada" id="portada" class="form-control"
+                    th:field="*{portada}">
+                <div class="invalid-feedback"
+                     th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+            </div>
+            <div class="form-group">
+                <label for="TiposDeDelitos" class="form-label">Tipo de delito:</label>
+                <select id="TiposDeDelitos" class="form-control" th:field="*{tiposDelitos}" multiple>
+                    <option th:each="tipoDelito : ${tiposDelitos}" th:value="${tipoDelito.id}"
+                        th:text="${tipoDelito.titulo}"></option>
+                </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('tiposDelitos')}" th:errors="*{tiposDelitos}"></div>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

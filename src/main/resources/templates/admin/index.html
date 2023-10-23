@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Proyecto Crimenes cometidos</title>
+
+   </head>
+<!--Bendito sea bootstrap-->
+<body id="page-top">
+    <div layout:fragment="content">
+        <h2 class="text-gray-900">Delitos</h2>
+        <div class="text-end">
+            <a href="/admin/delitos/nuevo" class="btn btn-primary mb-3">
+                Agregar Delito
+            </a>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Delito</th>
+                        <th>F.Cometido</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="delito : ${delitos}" th:object="${delito}">
+                        <td style="width:150px;">
+                            <a th:href="@{/assets/{filename}(filename=*{rutaPortada})}" data-fancybox>
+                                <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" alt="" class="img-thumbnail w-100">
+                            </a>
+                        </td>
+                        <td>
+                            <div th:text="*{nombreDelito}" class="fs-5 fw-bold"></div>
+                            <p th:text="*{descripcion}"></p>
+                        <div>
+                            <span class="badge rounded-pill bg-light text-dark me-1"
+                               th:each="tipoDelito : *{tipoDelitos}" th:text="${tipoDelito.titulo}" >
+                            </span>
+                        </div>
+                        </td>
+                        <td th:text="*{#temporals.format(fecha,'dd/MM/yyyy')}"></td>
+                        <td class="text-end">
+                            <a th:href="'/admin/delitos/' + *{id} + '/editar'"  class="btn btn-primary" >Editar</a>
+                        </td>
+                        <td class="text-end">
+                            <a href="javascript:void(0)" class="btn btn-danger ms-3" th:onclick="'eliminarDelito(' + *{id} +')'">Eliminar</a>
+                            <form th:id="'eliminarDelitoForm' + *{id}" th:action="'/admin/delitos/' + *{id} + '/eliminar'" method="post" class="d-none">
+                            </form>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div layout:fragment="scripts">
+        <script>
+            function eliminarDelito(id)
+            {
+                if(!confirm("¿Está seguro de eliminar el delito?"))
+                    return;
+                $("#eliminarDelitoForm" + id).submit();
+            }
+        </script>
+    </div>
+</body>
+</html>

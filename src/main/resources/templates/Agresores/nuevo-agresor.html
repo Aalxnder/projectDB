@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Agresor</title>
+    <!-- Custom fonts for this template-->
+    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    <link href="/static/css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+            rel="stylesheet" />
+</head>
+<body>
+    <div id="wrapper">
+        <!--        barra-->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <a class = "sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-guitar"></i>
+                </div>
+                <div class = "sidebar-brand-text mx-3"> Delitos cometidos</div>
+            </a>
+            <!--            Divisor-->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Opciones
+            </div>
+
+            <!--            Collapse menu-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" href="#"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-eye"></i>
+                    <span>Mirar Delitos</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Delitos:</h6>
+                        <a class="collapse-item" href="#">Delitos resueltos</a>
+                        <a class="collapse-item" href="#">Delitos sin resolver</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" href=""
+                   aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Administrar Delitos</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administracion de Delitos:</h6>
+                        <a class="collapse-item" href="/home/verDelitos">Mirar Delitos</a>
+                        <a class="collapse-item" href="/admin">Administrar Delito</a>
+
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsethree" href=""
+                   aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Mas Buscados</span>
+                </a>
+                <div id="collapsethree" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administrar sujetos:</h6>
+                        <a class="collapse-item" href="/home/verAgresores">Mirar Delincuentes</a>
+                        <a class="collapse-item" href="/Agresores">Administrar Delincuentes</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item" href="/home/verVictimas">Mirar Victimas</a>
+                        <a class="collapse-item" href="/Victima">Administrar Victimas</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Opciones de inicio de sesion
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                   aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Paginas</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class = "collapse-header">pantallas de inicio:</h6>
+                        <a class="collapse-item" href="/sesion/login">Login</a>
+                        <a class="collapse-item" href="/sesion/registrar">Registro</a>
+                        <a class="collapse-item" href="#">Olvido contraseña</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Otras paginas</h6>
+                        <a class="collapse-item" href="#">Sobre nosotros</a>
+                        <a class="collapse-item" href="#">Contactanos</a>
+                        <a class="collapse-item" href="#">CR7 y Messi</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!--        fin de el menu de al lado-->
+        <!--        Inicio del contenido-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!--                Barra de arriba-->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un delito"
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                 aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                               placeholder="Buscar delitos" aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <!--                        Informacion de usuario-->
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="txt-email-usuario">Usuario</span>
+                                <img class="img-profile rounded-circle" src="/static/img/undraw_profile.svg">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="ogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    configuraciomfas fa-c
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    registro de actividad
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    cerrar sesion
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="container-fluid">
+                    <h2>Edicion de delitos</h2>
+                    <br>
+                    <form action="" method="post" th:object="${agresor}"
+                          enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="nombreAgresor" class="form-label">Nombre:</label>
+                                <input th:field="*{nombreAgresor}" type="text" id="nombreAgresor" class="form-control form-control-user" placeholder="nombre">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('nombreAgresor')}"
+                                     th:errors="*{nombreAgresor}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="apellidosAgresor" class="form-label">Apellido:</label>
+                                <input th:field="*{apellidosAgresor}" type="text" id="apellidosAgresor" class="form-control form-control-user" placeholder="Apellidos:">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('apellidosAgresor')}"
+                                     th:errors="*{apellidosAgresor}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="fechaNacimiento" class="form-label">fecha de Nacimiento:</label>
+                                <input th:field="*{fechaNacimiento}" type="date" id="fechaNacimiento" class="form-control form-control-user" placeholder="Fecha de Nacimiento:">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaNacimiento')}"
+                                     th:errors="*{fechaNacimiento}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="genero" class="form-label">Genero:</label>
+                                <input th:field="*{genero}" type="text" id="genero" class="form-control form-control-user" placeholder="Genero:">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('genero')}"
+                                     th:errors="*{genero}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="direccion" class="form-label">Direccion:</label>
+                                <input th:field="*{direccion}" type="text" id="direccion" class="form-control form-control-user" placeholder="direccion:">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('direccion')}"
+                                     th:errors="*{direccion}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="numeroDeIdentificacion" class="form-label">Numero de identificacion:</label>
+                                <input th:field="*{numeroDeIdentificacion}" type="number" id="numeroDeIdentificacion" class="form-control form-control-user" placeholder="Numero de investigacion: ">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('numeroDeIdentificacion')}"
+                                     th:errors="*{numeroDeIdentificacion}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="delitoCometido" class="form-label">Delito Cometido: </label>
+                            <input type="text" class="form-control form-control-user"
+                                   id="delitoCometido"  placeholder="Digite el delito cometido"
+                                   th:field="*{delitoCometido}">
+                            <div class="invalid-feedback"
+                                 th:if="${#fields.hasErrors('delitoCometido')}"
+                                 th:errors="*{delitoCometido}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="portada" class="form-label">Portada : </label> <input
+                                type="file" name="portada" id="portada" class="form-control"
+                                th:field="*{portada}">
+                            <div class="invalid-feedback"
+                                 th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+                <!--                fin del container-fluid-->
+            </div>
+            <!--            fin del contenido-->
+        </div>
+    </div>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/static/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/static/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/static/js/demo/chart-area-demo.js"></script>
+<script src="/static/js/demo/chart-pie-demo.js"></script>
+<script src="/static/js/login.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<script
+        src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+</body>
+</html>
