@@ -5,28 +5,28 @@
       layout:decorate="~{master.html}" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Ver Agresores</title>
+    <title>Ver Delitos no resueltos</title>
 </head>
 <body id="page-top">
 <div layout:fragment="content">
-    <h4 class="text-gray-900"> Todos Los Delitos</h4>
+    <h4 class="text-gray-900"> Delitos no resueltos</h4>
     <div class="row">
         <div class="row">
-            <div class="col-md-3 my-5" th:each="delito : ${delitos}" th:object="${delito}">
+            <div class="col-md-3 my-5" th:each="delito : ${delitosNoResueltos}" th:object="${delito}">
                 <a th:href="'/home/verDelitos/' + *{id}" class="card-body shadow-lg" style="text-decoration:none;">
                     <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{nombreDelito}" class="card-img-top" height="330px">
                     <div class="card-body">
                         <h2 class="card-title fs-6" th:text="*{nombreDelito}"></h2>
 
                         <p th:text="*{#temporals.format(fecha,'dd/MM/yyyy')}"
-                               class="text-muted small"></p>
+                           class="text-muted small"></p>
 
                         <p th:text="*{evidencia}" class="text-muted small"></p>
                     </div>
                 </a>
             </div>
         </div>
-        <div class="row mt-5" th:with="page=${delitos}">
+        <div class="row mt-5" th:with="page=${delitosNoResueltos}">
             <div class="col-sm-6">
                 <div sd:pagination-sumary></div>
                 <div class="col-sm-6">
@@ -38,8 +38,6 @@
         </div>
     </div>
 </div>
-
-
 
 </body>
 </html>

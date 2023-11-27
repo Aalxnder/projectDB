@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-    >
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>[[${agresor.nombreAgresor}]]</title>
+    <title>Nuevo Agresor</title>
+    <!-- Custom fonts for this template-->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -22,7 +22,7 @@
             href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
             rel="stylesheet" />
 </head>
-<body id="page-top">
+<body>
 <div id="wrapper">
     <!--        barra-->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -80,14 +80,13 @@
                 </div>
             </div>
         </li>
-
         <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" href=""
-               aria-expanded="true" aria-controls="collapseThree">
+            <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsethree" href=""
+               aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Mas Buscados</span>
             </a>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div id="collapsethree" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar sujetos:</h6>
                     <a class="collapse-item" href="/home">Mirar Delincuentes</a>
@@ -95,7 +94,6 @@
                     <div class="collapse-divider"></div>
                     <a class="collapse-item" href="/home/verVictimas">Mirar Victimas</a>
                     <a class="collapse-item" href="/Victima">Administrar Victimas</a>
-
                 </div>
             </div>
         </li>
@@ -206,73 +204,102 @@
                 </ul>
             </nav>
             <div class="container-fluid">
-                <div th:object="${agresor}">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}"
-                                 th:alt="*{nombreAgresor}" class="img-fluid rounded w-100">
+                <h2>Registro de Evidencia de testigos</h2>
+                <br>
+                <form action="" method="post" th:object="${testigo}"
+                      enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="nombreTestigo" class="form-label">Nombre:</label>
+                            <input th:field="*{nombreTestigo}" type="text" id="nombreTestigo" class="form-control form-control-user" placeholder="nombre">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nombreTestigo')}"
+                                 th:errors="*{nombreTestigo}"></div>
                         </div>
-                        <div class="col-md-6">
-                            <h2 th:text="*{nombreAgresor+' '+apellidosAgresor}"></h2>
-                            <div class="mb-3">
-                                <p th:text="*{fechaNacimiento}"></p>
-                            </div>
-                            <div class="mb-3">
-                                <p th:text="*{genero}"></p>
-                            </div>
-                            <div class="mb-3">
-                                <p th:text="*{direccion}"></p>
-                            </div>
-                            <div class="mb-3">
-                                <p th:text="*{numeroDeIdentificacion}"></p>
-                            </div>
-                            <div class="mb-3">
-                                <p th:text="*{delitoCometido}"></p>
-                            </div>
-                            <div class="col-mb-3">
-                                <a class="btn btn-danger text-end" href="/">Reportar a las autoridades</a>
-                            </div>
+                        <div class="col-sm-6">
+                            <label for="apellidosTestigo" class="form-label">Apellido:</label>
+                            <input th:field="*{apellidosTestigo}" type="text" id="apellidosTestigo" class="form-control form-control-user" placeholder="Apellidos:">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('apellidosTestigo')}"
+                                 th:errors="*{apellidosTestigo}"></div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="fechaNacimiento" class="form-label">fecha de Nacimiento:</label>
+                            <input th:field="*{fechaNacimiento}" type="date" id="fechaNacimiento" class="form-control form-control-user" placeholder="Fecha de Nacimiento:">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaNacimiento')}"
+                                 th:errors="*{fechaNacimiento}"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="genero" class="form-label">Genero:</label>
+                            <input th:field="*{genero}" type="text" id="genero" class="form-control form-control-user" placeholder="Genero:">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('genero')}"
+                                 th:errors="*{genero}"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="numeroDeIdentificacion" class="form-label">Numero de identificacion:</label>
+                            <input th:field="*{numeroDeIdentificacion}" type="number" id="numeroDeIdentificacion" class="form-control form-control-user" placeholder="Numero de investigacion: ">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('numeroDeIdentificacion')}"
+                                 th:errors="*{numeroDeIdentificacion}"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="delito" class="form-label">delito:</label>
+                            <input th:value="${testigo.delito.id}" type="text" id="delito" class="form-control form-control-user" readonly="readonly">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('delito')}" th:errors="*{delito}"></div>
+                        </div>
 
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reporte" class="form-label">Reporte:</label>
+                        <textarea th:field="*{reporte}" type="number" id="reporte" class="form-control form-control-user" placeholder="Ingrese su reporte: " resize="none"></textarea>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('reporte')}"
+                             th:errors="*{reporte}"></div>
+                    </div>
+                    <div class="text-end">
+                        <a th:href="@{/testigo/ver-testigos/{idDelito}(idDelito=${testigo.delito.id})}" class="btn btn-primary">Ver Testigos de Este Delito</a>
+
+                        <button type="submit" class="btn btn-secondary">Guardar</button>
+                    </div>
+                </form>
             </div>
-
+            <!--                fin del container-fluid-->
         </div>
+        <!--            fin del contenido-->
     </div>
 </div>
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/static/js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="/static/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/static/vendor/chart.js/Chart.min.js"></script>
+<!-- Page level plugins -->
+<script src="/static/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/static/js/demo/chart-area-demo.js"></script>
-    <script src="/static/js/demo/chart-pie-demo.js"></script>
-    <script src="/static/js/login.js"></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<!-- Page level custom scripts -->
+<script src="/static/js/demo/chart-area-demo.js"></script>
+<script src="/static/js/demo/chart-pie-demo.js"></script>
+<script src="/static/js/login.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-    <script
-            src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </body>
 </html>

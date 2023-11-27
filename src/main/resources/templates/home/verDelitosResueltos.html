@@ -5,11 +5,11 @@
       layout:decorate="~{master.html}" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Ver Agresores</title>
+    <title>Ver delitos Resueltos</title>
 </head>
 <body id="page-top">
 <div layout:fragment="content">
-    <h4 class="text-gray-900"> Todos Los Delitos</h4>
+    <h4 class="text-gray-900"> Delitos Resueltos</h4>
     <div class="row">
         <div class="row">
             <div class="col-md-3 my-5" th:each="delito : ${delitos}" th:object="${delito}">
@@ -19,7 +19,7 @@
                         <h2 class="card-title fs-6" th:text="*{nombreDelito}"></h2>
 
                         <p th:text="*{#temporals.format(fecha,'dd/MM/yyyy')}"
-                               class="text-muted small"></p>
+                           class="text-muted small"></p>
 
                         <p th:text="*{evidencia}" class="text-muted small"></p>
                     </div>
@@ -38,8 +38,6 @@
         </div>
     </div>
 </div>
-
-
 
 </body>
 </html>

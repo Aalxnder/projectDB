@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorate="~{master.html}">-->
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Registro de delitos</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Proyecto Crimenes cometidos</title>
+
     <!-- Custom fonts for this template-->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
-    <link href="/static/css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous">
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <link
-            href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-            rel="stylesheet" />
+    <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
+<!--Bendito sea bootstrap-->
 <body id="page-top">
     <div id="wrapper">
         <!--        barra-->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class = "sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class = "sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-guitar"></i>
                 </div>
@@ -76,9 +70,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administracion de Delitos:</h6>
-                        <a class="collapse-item" href="/home/verDelitos">Mirar Delitos</a>
-                        <a class="collapse-item" href="/admin">Administrar Delito</a>
-
+                        <a class="collapse-item" href="/home/verDelitos">mirar Delito</a>
+                        <a class="collapse-item" href="/admin">Administrar delito</a>
                     </div>
                 </div>
             </li>
@@ -96,9 +89,11 @@
                         <div class="collapse-divider"></div>
                         <a class="collapse-item" href="/home/verVictimas">Mirar Victimas</a>
                         <a class="collapse-item" href="/Victima">Administrar Victimas</a>
+
                     </div>
                 </div>
             </li>
+
             <hr class="sidebar-divider">
 
             <div class="sidebar-heading">
@@ -180,7 +175,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="txt-email-usuario">Usuario</span>
-                                <img class="img-profile rounded-circle" src="/static/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../static/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
@@ -205,116 +200,38 @@
                         </li>
                     </ul>
                 </nav>
+                <!--                fin de la barra de arriba-->
                 <div class="container-fluid">
-                    <h2>Registro de delitos</h2>
-                    <br>
-                    <form action="" method="post" th:object="${delito}"
-                          enctype="multipart/form-data">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="nombre" class="form-label">Titulo:</label>
-                                <input th:field="*{nombreDelito}" type="text" id="nombre" class="form-control form-control-user" placeholder="nombre">
-                                <div class="invalid-feedback" th:if="${#fields.hasErrors('nombreDelito')}"
-                                     th:errors="*{nombreDelito}"></div>
+                    <h4 class="text-gray-900"> Todos Los testigos de este delito</h4>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6 my-5" th:each="testigo : ${testigos}" th:object="${testigo}">
+                                <div class="card-body card border-left-primary shadow h-100 py-2">
+                                    <h2 class="card-title fs-6" th:text="*{nombreTestigo}"></h2>
+                                    <p class="card-deck" th:text="*{apellidosTestigo}"></p>
+                                    <p th:text="*{#temporals.format(fechaNacimiento,'dd/MM/yyyy')}"
+                                       class="text-muted small"></p>
+                                    <p class="card-deck" th:text="*{genero}"></p>
+                                    <p th:text="*{reporte}" class="text-muted small"></p>
+                                </div>
+                                </a>
                             </div>
+                        </div>
+                        <div class="row mt-5" th:with="page=${testigos}">
                             <div class="col-sm-6">
-                                <label for="descripcion" class="form-label">Descripcion:</label>
-                                <input th:field="*{descripcion}" type="text" id="descripcion" class="form-control form-control-user" placeholder="Descripcion">
-                                <div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}"
-                                     th:errors="*{descripcion}"></div>
+                                <div sd:pagination-sumary></div>
+                                <div class="col-sm-6">
+                                    <nav>
+                                        <ul class="pagination" sd:pagination="full"></ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="idAgresor" class="form-label">IdAgresor:</label>
-                                <input th:field="*{idAgresor}" type="number" id="idAgresor" class="form-control form-control-user" placeholder="Id Agresor:">
-                                <div class="invalid-feedback" th:if="${#fields.hasErrors('idAgresor')}"
-                                     th:errors="*{idAgresor}"></div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="evidencia" class="form-label">evidencia:</label>
-                                <input th:field="*{evidencia}" type="text" id="evidencia" class="form-control form-control-user" placeholder="evidencia">
-                                <div class="invalid-feedback" th:if="${#fields.hasErrors('evidencia')}"
-                                     th:errors="*{evidencia}"></div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="idVictima" class="form-label">Id de la victima:</label>
-                                <input th:field="*{idVictima}" type="number" id="idVictima" class="form-control form-control-user" placeholder="Id Victima:">
-                                <div class="invalid-feedback" th:if="${#fields.hasErrors('idVictima')}"
-                                     th:errors="*{idVictima}"></div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="investigadorId" class="form-label">id Del investigador que llevara el caso:</label>
-                                <input th:field="*{investigadorId}" type="number" id="investigadorId" class="form-control form-control-user" placeholder="investigadorId: ">
-                                <div class="invalid-feedback" th:if="${#fields.hasErrors('investigadorId')}"
-                                     th:errors="*{investigadorId}"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha" class="form-label">Fecha de cometido: </label>
-                            <input type="date" class="form-control form-control-user"
-                                   id="fecha"  placeholder="Digite la fecha de cometido"
-                                   th:field="*{fecha}">
-                            <div class="invalid-feedback"
-                                 th:if="${#fields.hasErrors('fecha')}"
-                                 th:errors="*{fecha}"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="portada" class="form-label">Portada : </label> <input
-                                type="file" name="portada" id="portada" class="form-control"
-                                th:field="*{portada}">
-                            <div class="invalid-feedback"
-                                 th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="tipoDelitos" class="form-label">Tipo de delito:</label>
-                            <select id="tipoDelitos" class="form-control" th:field="*{tipoDelitos}" multiple>
-                                <option th:each="tipo : ${tiposDelitos}" th:value="${tipo.id}"
-                                        th:text="${tipo.titulo}"></option>
-                            </select>
-                            <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoDelitos')}" th:errors="*{tipoDelitos}"></div>
-                        </div>
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-<!--                fin del container-fluid-->
+
             </div>
-<!--            fin del contenido-->
         </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/static/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="/static/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/static/js/demo/chart-area-demo.js"></script>
-    <script src="/static/js/demo/chart-pie-demo.js"></script>
-    <script src="/static/js/login.js"></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-
-    <script
-            src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 </body>
 </html>

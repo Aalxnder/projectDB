@@ -47,10 +47,17 @@ public class Delito
     @Setter @Getter @Column(name = "fecha")
     private LocalDate fecha;
 
+    @Setter @Getter @Column(name = "estado")
+    private String estado = "no resuelto";
+
     @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tipodelito_delito", joinColumns = @JoinColumn(name = "iddelito"), inverseJoinColumns = @JoinColumn(name = "idtipodelito"))
     private List<TipoDelito> tipoDelitos;
+
+    @OneToMany(mappedBy = "delito")
+    private List<Testigo> testigos;
+
 
     public List<TipoDelito> getTipoDelitos() {
         return tipoDelitos;
@@ -59,6 +66,7 @@ public class Delito
     public void setTipoDelitos(List<TipoDelito> tipoDelitos) {
         this.tipoDelitos = tipoDelitos;
     }
+
 
     @Setter @Getter @Column(name = "rutaportada")
     private String rutaPortada;

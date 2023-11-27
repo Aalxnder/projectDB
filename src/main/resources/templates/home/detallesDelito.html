@@ -59,8 +59,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Delitos:</h6>
-                    <a class="collapse-item" href="#">Delitos resueltos</a>
-                    <a class="collapse-item" href="#">Delitos sin resolver</a>
+                    <a class="collapse-item" href="/delitos/resueltos">Delitos resueltos</a>
+                    <a class="collapse-item" href="/delitos/noResueltos">Delitos sin resolver</a>
                 </div>
             </div>
         </li>
@@ -141,12 +141,12 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/home/verDelitos">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un delito"
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un delito" name="nombreDelito"
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -161,12 +161,12 @@
 
                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                              aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
+                            <form class="form-inline mr-auto w-100 navbar-search" action="/home/verDelitos">
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
+                                    <input type="text" class="form-control bg-light border-0 small" name="nombreDelito"
                                            placeholder="Buscar delitos" aria-label="Search" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
+                                        <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
@@ -233,11 +233,12 @@
                             </div>
 
                             <div class="mb-3">
-                                <a class="btn btn-danger text-end" href="/">Reportar evidencia</a>
+                                <button th:attr="data-delito-id=${delito.id}" class="btn btn-primary reportar-evidencia">Reportar Evidencia</button>
                             </div>
-                            <div class="col-mb-3">
-                                <a class="btn btn-primary text-end" href="/">Marcar como completado</a>
-                            </div>
+                            <form action="/marcar-delito-resuelto" method="post">
+                                <input type="hidden" name="id" th:value="*{id}">
+                                <button class="btn btn-primary text-end col-mb-3" type="submit">Marcar como Resuelto</button>
+                            </form>
                         </div>
                     </div>
 
@@ -248,7 +249,17 @@
     </div>
 </div>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var reportarEvidenciaButtons = document.querySelectorAll('.reportar-evidencia');
+        reportarEvidenciaButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var delitoId = button.getAttribute('data-delito-id');
+                window.location.href = '/testigo/nuevo-testigo?delitoId=' + delitoId;
+            });
+        });
+    });
+</script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/static/vendor/jquery/jquery.min.js"></script>

@@ -42,7 +42,6 @@ public class AdminController
         return new ModelAndView("admin/index")
                 .addObject("delitos",delitos);
     }
-
     @GetMapping("/delitos/nuevo")
     public ModelAndView mostrarFormularioDeNuevoDelito()
     {

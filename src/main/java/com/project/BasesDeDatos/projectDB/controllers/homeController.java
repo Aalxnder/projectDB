@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -47,11 +48,16 @@ public class homeController
                 .addObject("agresor",agresor);
     }
     @GetMapping("/verDelitos")
-    public ModelAndView listarDelitos(@PageableDefault(sort = "fecha",direction = Sort.Direction.ASC) Pageable pageable)
-    {
-        Page<Delito> delitos = delitoRepositorio.findAll(pageable);
+    public ModelAndView listarDelitos(@PageableDefault(sort = "fecha", direction = Sort.Direction.ASC) Pageable pageable,
+                                      @RequestParam(name = "nombreDelito", required = false) String nombreDelito) {
+        Page<Delito> delitos;
+        if (nombreDelito != null && !nombreDelito.isEmpty()) {
+            delitos = delitoRepositorio.findByNombreDelitoContaining(nombreDelito, pageable);
+        } else {
+            delitos = delitoRepositorio.findAll(pageable);
+        }
         return new ModelAndView("/home/verDelitos")
-                .addObject("delitos",delitos);
+                .addObject("delitos", delitos);
     }
     @GetMapping("/verDelitos/{id}")
     public ModelAndView mostrarDetallesDelito(@PathVariable Integer id)

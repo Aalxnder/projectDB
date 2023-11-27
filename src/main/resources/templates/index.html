@@ -23,7 +23,7 @@
     <!--        barra-->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <a class = "sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class = "sidebar-brand d-flex align-items-center justify-content-center" href="/">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-guitar"></i>
             </div>
@@ -55,8 +55,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Delitos:</h6>
-                    <a class="collapse-item" href="#">Delitos resueltos</a>
-                    <a class="collapse-item" href="#">Delitos sin resolver</a>
+                    <a class="collapse-item" href="/delitos/resueltos">Delitos resueltos</a>
+                    <a class="collapse-item" href="/delitos/noResueltos">Delitos sin resolver</a>
                 </div>
             </div>
         </li>
@@ -70,7 +70,7 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administracion de Delitos:</h6>
-                    <a class="collapse-item" href="/home/verDelitos">mirar Delito delito</a>
+                    <a class="collapse-item" href="/home/verDelitos">mirar Delito</a>
                     <a class="collapse-item" href="/admin">Administrar delito</a>
                 </div>
             </div>
@@ -136,12 +136,12 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/home/verDelitos">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un delito"
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un delito" name="nombreDelito"
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -156,12 +156,12 @@
 
                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                              aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
+                            <form class="form-inline mr-auto w-100 navbar-search" action="/home/verDelitos">
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
+                                    <input type="text" class="form-control bg-light border-0 small" name="nombreDelito"
                                            placeholder="Buscar delitos" aria-label="Search" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
+                                        <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
@@ -200,6 +200,212 @@
                     </li>
                 </ul>
             </nav>
+            <div class="container-fluid">
+                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                     <h1 class="h3 mb-3 text-gray-800">Bienvenido</h1>
+                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-end"><i
+                             class="fas fa-lightbulb fa-sm text-white-50"></i> Mas informacion</a>
+                 </div>
+                 <div class="row">
+                     <img class="card border-left-primary shadow h-100 justify-content-between img-fluid" src="/static/img/culiazanazo2.jpg" alt="" width="100%" height="70%">
+                 </div>
+                
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <img src="/static/img/imgInter1.jpg" alt="" width="290px" height="210px">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h2 class="text-gray-900">Noticias</h2>
+                                            <p>Urgent global response needed for “insidious” cybercrime</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <img src="/static/img/imgInter2.jpg" alt="" width="290px" height="210px">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h2 class="text-gray-900">Nuestros interlocutores</h2>
+                                            <p>apoyo a AFRIPOL</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <img src="/static/img/imgInter3.jpg" alt="" width="290px" height="210px">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h2 class="text-gray-900">Quiénes somos</h2>
+                                            <p>Oficinas Centrales Nacionales (OCN)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <img src="/static/img/imgInter4.jpg" alt="" width="290px" height="210px">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h2 class="text-gray-900">Noticias</h2>
+                                            <p>French police arrest 13 for international vehicle trafficking</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <img src="/static/img/imgInter5.jpg" alt="" width="290px" height="210px">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h2 class="text-gray-900">Quiénes somos</h2>
+                                            <p>INTERPOL 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2 ">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <img src="/static/img/imgInter6.jpg" alt="" width="290px" height="210px">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <h2 class="text-gray-900">Quiénes somos</h2>
+                                            <p>Fechas clave</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 mt-4 " >
+                        <div class="card border-left-primary shadow h-100 py-2 bg-gradient-primary">
+                            <div class="card-body ">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-muted font-weight-bold text-gray-200 text-uppercase mb-1">
+                                            Respuesta rapida
+                                        </div>
+                                        <div class="h5 mt-1 mb-0 font-weight-bold text-white-50 text-uppercase">
+                                            <h2 class="text-white-50 text-uppercase">24 Horas de respuesta de nuestro equipo de combate</h2>
+                                            <p class="text-uppercase text-sm text-white">Un Equipo de INTERPOL de Gestión de Crisis puede ser instruido, equipado y enviado a cualquier lugar del mundo en un plazo de 12 a 24 horas./p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 mt-4" >
+                        <div class="card border-left-primary shadow h-100 py-2 bg-gradient-primary">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-muted font-weight-bold text-gray-200 text-uppercase mb-1">
+                                            ¿Sabía que...?
+                                        </div>
+                                        <div class="h5 mt-1 mb-0 font-weight-bold text-white-50 ">
+                                            <h2 class="text-white-50 text-uppercase">19 bases de datos gestionadas por nuestro equipo</h2>
+                                            <p class="text-uppercase text-sm text-white">Un Equipo de INTERPOL de Gestión de Crisis puede ser instruido, equipado y enviado a cualquier lugar del mundo en un plazo de 12 a 24 horas./p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
+                    <h1 class="h3 mb-3 text-gray-800">Ayudenos a encontrarlos</h1>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 mb-4 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <img src="/static/img/RedNoticeEsLR.jpg" alt="" width="200px" height="250px">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h2>Ver las notificaciones rojas</h2>
+                                        <p> Ver y buscar notificaciones rojas sobre personas buscadas</p>
+                                        <a href="/home" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
+                                            <span class="text">Ver mas</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 mb-4 mt-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <img src="/static/img/YellowNoticeEsLR.jpg" alt="" width="200px" height="250px">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h2>Ver las notificaciones Amarillas</h2>
+                                        <p> Ver y buscar notificaciones amarillas sobre las personas victimas</p>
+                                        <a href="/home/verVictimas" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
+                                            <span class="text">Ver mas</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+<!--                </div>-->
+            </div>
         </div>
     </div>
 </div>
